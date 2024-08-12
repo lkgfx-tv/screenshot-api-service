@@ -30,11 +30,25 @@ class URLRequest(BaseModel):
     div_id: str
 
 
-chromedriver_path = os.path.join(
-    os.path.dirname(__file__),
-    "chromedriver-win64/chromedriver-win64",
-    "chromedriver.exe",
-)
+chromedriver_path = ""
+
+if os.name == "nt":  # Windows
+    chromedriver_path = os.path.join(
+        os.path.dirname(__file__),
+        "chromedriver-win64/chromedriver-win64",
+        "chromedriver.exe",
+    )
+else:  # Linux
+    chromedriver_path = os.path.join(
+        os.path.dirname(__file__),
+        "chromedriver-linux64/chromedriver-linux64",
+        "chromedriver",
+    )
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
 
 
 @app.post("/screenshot/")
