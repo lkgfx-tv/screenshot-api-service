@@ -18,7 +18,7 @@ app = FastAPI()
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ajusta según tu configuración
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,7 +31,9 @@ class URLRequest(BaseModel):
 
 
 chromedriver_path = os.path.join(
-    os.path.dirname(__file__), "chromedriver-win64", "chromedriver.exe"
+    os.path.dirname(__file__),
+    "chromedriver-win64/chromedriver-win64",
+    "chromedriver.exe",
 )
 
 
@@ -41,6 +43,7 @@ async def capture_screenshot(request: URLRequest):
     div_id = request.div_id
     driver = None
     try:
+        print(chromedriver_path)
         # Configurar Selenium
         options = Options()
         options.add_argument("--disable-gpu")  # Desactivar GPU
