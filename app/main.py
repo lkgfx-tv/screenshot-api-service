@@ -50,11 +50,11 @@ else:  # Linux
 async def root():
     return {
         "message": "Hello World!",
-        "2": os.path.join(
+        "2": f'{os.path.join(
             os.path.dirname(__file__),
             "chromedriver-linux64/chromedriver-linux64",
             "chromedriver",
-        ),
+        )} aqui',
     }
 
 
