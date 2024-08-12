@@ -18,7 +18,7 @@ app = FastAPI()
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Ajusta según tu configuración
+    allow_origins=["*"],  # Ajusta según tu configuración
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,6 +28,11 @@ app.add_middleware(
 class URLRequest(BaseModel):
     url: str
     div_id: str
+
+
+chromedriver_path = os.path.join(
+    os.path.dirname(__file__), "chromedriver-win64", "chromedriver.exe"
+)
 
 
 @app.post("/screenshot/")
@@ -41,9 +46,7 @@ async def capture_screenshot(request: URLRequest):
         options.add_argument("--disable-gpu")  # Desactivar GPU
         options.add_argument("--force-device-scale-factor=1")
         options.add_argument("--headless")  # Opcional: Ejecutar en modo sin cabeza
-        service = Service(
-            r"C:\Users\juann\Documents\Work\Kamwise\screenshot\app\chromedriver-win64\chromedriver.exe"
-        )  # Ruta a chromedriver
+        service = Service(chromedriver_path)  # Ruta a chromedriver
         driver = webdriver.Chrome(service=service, options=options)
 
         # Configurar tamaño de ventana
