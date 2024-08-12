@@ -48,7 +48,7 @@ else:  # Linux
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Hello World!!"}
 
 
 @app.post("/screenshot/")
@@ -166,7 +166,7 @@ async def capture_screenshot(request: URLRequest):
 #         raise HTTPException(status_code=500, detail=str(e))
 
 
-if __name__ == "__main__":
-    import uvicorn
+# if __name__ == "__main__":
+#     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+#     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
