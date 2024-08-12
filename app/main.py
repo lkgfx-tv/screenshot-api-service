@@ -48,7 +48,14 @@ else:  # Linux
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World!!"}
+    return {
+        "message": "Hello World!!",
+        "2": os.path.join(
+            os.path.dirname(__file__),
+            "chromedriver-linux64/chromedriver-linux64",
+            "chromedriver",
+        ),
+    }
 
 
 @app.post("/screenshot/")
